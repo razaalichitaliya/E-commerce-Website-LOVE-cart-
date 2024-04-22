@@ -1,0 +1,67 @@
+/* Style for the body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* Style for the form */
+.registration-table {
+    width: 50%;
+    margin: 50px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the form heading */
+.registration-table h1 {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style for form labels */
+.registration-table label {
+    display: block;
+    padding: 10px 20px;
+}
+
+/* Style for form input fields */
+.registration-table input[type="text"],
+.registration-table input[type="file"],
+.registration-table input[type="submit"] {
+    width: calc(100% - 40px);
+    padding: 10px;
+    margin: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Style for the submit button */
+.registration-table input[type="submit"] {
+    background-color: #007bff; /* Change color as needed */
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.registration-table input[type="submit"]:hover {
+    background-color: #0056b3; /* Change color as needed */
+}
+
+/* Style for file input */
+.registration-table input[type="file"] {
+    padding-top: 7px;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .registration-table {
+        width: 80%;
+    }
+}
