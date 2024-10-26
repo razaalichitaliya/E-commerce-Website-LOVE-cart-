@@ -3,35 +3,40 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Registration</title>
-	<link rel="stylesheet" href="../style.css">
+	<title>Add New Product</title>
+	<!-- Bootstrap CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-	<form action="newproductsubmit.php" method="POST" enctype="multipart/form-data">
-	<table class="registration-table">
+<div class="container mt-5">
+	<div class="card">
+		<div class="card-body">
+			<h1 class="text-center mb-4">Add New Product</h1>
+			<form action="newproductsubmit.php" method="POST" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="productname">Product Name</label>
+					<input type="text" class="form-control" name="productname" id="productname" required>
+				</div>
+				<div class="form-group">
+					<label for="price">Price</label>
+					<input type="text" class="form-control" name="price" id="price" required>
+				</div>
+				<div class="form-group">
+					<label for="imagefile">Select Image</label>
+					<input type="file" class="form-control-file" name="imagefile" id="imagefile">
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary">Add Product</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
-	<tr>
-		<td colspan="2">	<h1>Add New Product</h1></td>
-	</tr>
-	<tr>
-		<td><label for="productname">Product name</label></td>
-	<td><input type="text" name="productname" id="productname"></td>
-	</tr>
-	
-
-
-	<tr>
-		<td><label for="price">Price</label></td>
-	<td><input type="text" name="price" id="price"></td>
-	</tr>
-
-	<tr>
-		<td><label for="imagefile">Select Image</label></td>
-	<td><input type="file" name="imagefile" id="imagefile"></td>
-	</tr>
-	<tr><td></td><td><input type="submit" value="Add Product"></td></tr>
-	</table>
-	</form>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

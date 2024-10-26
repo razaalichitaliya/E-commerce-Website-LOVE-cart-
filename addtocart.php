@@ -31,6 +31,5 @@ if(isset($_GET["pid"])) {
     }
 }
 
-// Redirect back to the index.php page
 header("location: product.php");
 ?>
