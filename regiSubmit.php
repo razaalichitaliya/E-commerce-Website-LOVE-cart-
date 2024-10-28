@@ -6,11 +6,10 @@ if(isset($_POST["email"]))
 	$password = $_POST["psw"];
 	$gander = $_POST["gender"];
 	$city = $_POST["city"];
-	$class = $_POST["class"];
-	$stream = $_POST["stream"];
+	
 	require_once("connection.php");
 
-	$query = "insert into registration (emailid, name, password, gander, city, class, stream) values ('$emailid', '$name', '$password', '$gander', '$city', '$class', '$stream')";
+	$query = "insert into registration (emailid, name, password, gander, city) values ('$emailid', '$name', '$password', '$gander', '$city')";
 
 	try
 	{

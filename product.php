@@ -1,7 +1,21 @@
 <?php 
-    session_start();
-    require_once("connection.php");
-    $result = $con->query("SELECT * FROM products");
+session_start();
+require_once("connection.php");
+
+// Fetch products
+$result = $con->query("SELECT * FROM products");
+
+// Get userid from session
+$userid = $_SESSION['userid'];
+
+// Count items in the cart for this user
+$cart_query = $con->query("SELECT COUNT(*) AS row_count FROM addtocart WHERE userid = '$userid'");
+$cart_count = 0;
+
+if ($cart_query) {
+    $cart_data = $cart_query->fetch_assoc();
+    $cart_count = $cart_data['row_count'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,8 +23,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> L O &hearts; E C a r t</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             background-color: #f4f4f4;
@@ -79,10 +96,10 @@
         }
     </style>
 </head>
-<body>
+<body class="p-3 m-0 border-0 bd-example m-0 border-0">
 
     <h1><pre>L O &hearts; E   C a r t</pre></h1>
-
+    
     <div class="container my-3">
         <?php 
             if(isset($_SESSION["login"]) && $_SESSION["login"] == "customer") {
@@ -95,7 +112,6 @@
             } else {
                 echo "<a href='login.php'>Login</a>";
             }
-            $cart_count = isset($_SESSION["cart"]) ? count($_SESSION["cart"]) : 0;
         ?>
         <div class="text-right mb-3">
             <a href="cart.php" class="btn btn-primary">Cart: <?php echo $cart_count; ?></a>
@@ -110,7 +126,7 @@
                             <p><?php echo $data->productname; ?></p>
                             <p><?php echo $data->price; ?></p>
                         </div>
-                        <a href="addtocart.php?pid=<?php echo $data->productid; ?>" class="add-to-cart-btn">
+                        <a href="#" class="add-to-cart-btn" data-pid="<?php echo $data->productid; ?>">
                             <i class="bi bi-bag" style="font-size: 24px;"></i>
                         </a>
                     </div>
@@ -120,6 +136,31 @@
     </div>
 
     <div class="fot">Buy things for you and your beloved! &hearts;</div>
+
+    <script>
+    $(document).ready(function() {
+        $('.add-to-cart-btn').on('click', function(e) {
+            e.preventDefault();
+            var productId = $(this).data('pid');
+
+            $.ajax({
+                url: 'addtocart.php?pid=' + productId,
+                type: 'GET',
+                success: function(response) {
+                    var result = JSON.parse(response);
+                    alert(result.message);
+                    if (result.status) {
+                        var cartCount = parseInt($('.btn-primary').text().match(/\d+/)[0]) + 1;
+                        $('.btn-primary').text('Cart: ' + cartCount);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while adding the product to cart.');
+                }
+            });
+        });
+    });
+    </script>
 
 </body>
 </html>

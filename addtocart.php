@@ -1,35 +1,44 @@
 <?php
 session_start();
-
-// Include your database connection file here
 require_once("connection.php");
 
-if(isset($_GET["pid"])) {
-    $product_id = $_GET['pid'];
-
-    // Fetch product details from the database based on the product ID
-    $query = "SELECT productname, price FROM products WHERE productid = ?";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param("i", $product_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $product_name = $row['productname'];
-        $product_price = $row['price'];
-
-        if(isset($_SESSION["cart"])) {
-            $cart = $_SESSION["cart"];
-            $newProduct = array('productname' => $product_name, 'price' => $product_price);
-            array_push($cart, $newProduct);
-            $_SESSION["cart"] = $cart;
-        } else {
-            $cart = array(array('productname' => $product_name, 'price' => $product_price));
-            $_SESSION["cart"] = $cart;
-        }
-    }
+if (!isset($_SESSION["login"]) || $_SESSION["login"] !== "customer") {
+    echo json_encode(["message" => "Please log in to add items to your cart.", "status" => false]);
+    exit();
 }
 
-header("location: product.php");
+$email = $_SESSION["username"];
+$user_query = $con->query("SELECT userid FROM Registration WHERE emailid='$email'");
+$user_data = $user_query->fetch_object();
+$userid = $user_data->userid;
+
+// Check if product ID is provided in the URL
+if (isset($_GET['pid'])) {
+    $productid = (int)$_GET['pid'];
+
+    // Check if the product is already in the user's cart
+    $productSql = $con->query("SELECT COUNT(*) AS row_count FROM addtocart WHERE userid = '$userid' AND productid = '$productid'");
+    $product_data = $productSql->fetch_assoc();
+    $product_count = $product_data['row_count'];
+
+    if ($product_count > 0) {
+        echo json_encode(["message" => "Product already in cart.", "status" => false]);
+        exit();
+    }
+
+    // Insert the `userid` and `productid` into the `addtocart` table
+    $add_query = $con->prepare("INSERT INTO addtocart (userid, productid) VALUES (?, ?)");
+    $add_query->bind_param("ii", $userid, $productid);
+    $add_query->execute();
+    
+    if ($add_query->affected_rows > 0) {
+        echo json_encode(["message" => "Product added to cart!", "status" => true]);
+    } else {
+        echo json_encode(["message" => "Failed to add product to cart.", "status" => false]);
+    }
+    
+    $add_query->close();
+} else {
+    echo json_encode(["message" => "Product ID not provided.", "status" => false]);
+}
 ?>

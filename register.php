@@ -86,15 +86,9 @@
                 <input type="text" class="form-control" placeholder="Enter city" name="city" id="city" required>
             </div>
 
-            <div class="form-group">
-                <label for="class" class="form-label">Class</label>
-                <input type="text" class="form-control" placeholder="Enter class" name="class" id="class" required>
-            </div>
+            
 
-            <div class="form-group">
-                <label for="stream" class="form-label">Stream</label>
-                <input type="text" class="form-control" placeholder="Enter stream" name="stream" id="stream" required>
-            </div>
+            
 
             <button type="submit" class="btn btn-primary">Register</button>
         </form>

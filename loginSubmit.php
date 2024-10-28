@@ -16,12 +16,13 @@ if(isset($_POST["email"]))
 		{
 			$_SESSION["login"] = "customer";
 			$_SESSION["username"] = $data->emailid;
+			$_SESSION["userid"] = $data->userid;
 			header("location: product.php");
 		}
 		else
 		{
 			echo 'Incorrect username or password. Please try again';
-			echo '<a href="index.php">Click here to login again</a>';
+			echo '<a href="login.php">Click here to login again</a>';
 		}
 	}
 	catch(Exception $e)
