@@ -16,7 +16,7 @@ if(isset($_POST["email"]))
 		{
 			$_SESSION["login"] = "seller";
 			$_SESSION["username"] = $data->emailid;
-			header("location: product.php");
+			header("location: index.php");
 		}
 		else
 		{

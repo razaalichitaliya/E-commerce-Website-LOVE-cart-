@@ -1,63 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+    }
 
-        .form-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-        }
+    .form-container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    }
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
 
-        .form-label {
-            color: #555;
-        }
+    .form-label {
+        color: #555;
+    }
 
-        .form-control {
-            box-shadow: none;
-        }
+    .form-control {
+        box-shadow: none;
+    }
 
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-            transition: background-color 0.3s;
-        }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: background-color 0.3s;
+    }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
 
-        .form-footer {
-            margin-top: 20px;
-            text-align: center;
-        }
+    .form-footer {
+        margin-top: 20px;
+        text-align: center;
+    }
 
-        .form-footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
+    .form-footer a {
+        color: #007bff;
+        text-decoration: none;
+    }
 
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
+    .form-footer a:hover {
+        text-decoration: underline;
+    }
     </style>
 </head>
+
 <body>
 
     <div class="form-container">
@@ -66,13 +68,18 @@
 
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" name="email" id="email" class="form-control">
+                <input type="text" name="email" id="email" class="form-control" require>
             </div>
 
             <div class="form-group">
                 <label for="Password" class="form-label">Password</label>
-                <input type="password" name="Password" id="Password" class="form-control">
+                <input type="password" name="Password" id="Password" class="form-control" require>
             </div>
+            <div class="form-group form-check">
+                <input type="checkbox" name="remember_me" id="remember_me" class="form-check-input">
+                <label for="remember_me" class="form-check-label">Remember Me</label require>
+            </div>
+
 
             <button type="submit" class="btn btn-primary btn-block">Login</button>
 
@@ -84,4 +91,5 @@
     </div>
 
 </body>
+
 </html>

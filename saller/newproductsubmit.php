@@ -22,7 +22,7 @@ if(isset($_POST["productname"]))
 	{
 		$con->query($query);
 		$_SESSION["message"] = "Product is added Successfully";
-		header("location: product.php");
+		header("location: index.php");
 	}
 	catch(Exception $e)
 	{

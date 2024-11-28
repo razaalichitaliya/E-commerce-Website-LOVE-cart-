@@ -11,7 +11,7 @@ if(isset($_GET["pid"]))
 		require_once("../connection.php");
 		$con->query($query);
 		$_SESSION["message"] = "Product is deleted Successfully";
-		header("location: product.php");
+		header("location: index.php");
 	}
 	catch(Exception $e)
 	{

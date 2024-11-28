@@ -57,7 +57,7 @@ if (isset($_POST["productname"])) {
     try {
         $stmt->execute();
         $_SESSION["message"] = "Product is updated successfully.";
-        header("location: product.php");
+        header("location: index.php");
         exit();
     } catch (Exception $e) {
         echo "Some error occurred. Please try again.";
