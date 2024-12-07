@@ -2,7 +2,7 @@
 session_start();
 require_once("connection.php");
 require_once("Product.php");
-
+//Using Session And cookies
 // Check if the user is not logged in but has a cookie
 if (!isset($_SESSION['login']) && isset($_COOKIE['userid'])) {
     $userid = $_COOKIE['userid'];
@@ -30,16 +30,17 @@ $cart_count = $product->getCartCount();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L O &hearts; E C a r t</title>
+    <title>L O &hearts; E  C a r t</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Using bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
-    /* Main Styles */
 body {
-    background-color: #f4ßf4f4;
+    background-color: #f4f4f4;
     font-family: Arial, sans-serif;
 }
 
@@ -53,10 +54,11 @@ h1 {
 }
 
 .product-container {
+    /* used flex */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px; /* Adjusts spacing between products */
+    gap: 10px; 
 }
 
 .product {
@@ -65,7 +67,7 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
     background-color: #fff;
-    width: 22%; /* Keeps the existing layout for larger screens */
+    width: 22%; 
     margin-bottom: 20px;
 }
 
@@ -73,7 +75,7 @@ h1 {
     cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
-
+/* using the Selectors */
 .product-image {
     width: 100%;
     height: 200px;
@@ -112,7 +114,7 @@ h1 {
     text-align: center;
     padding: 10px;
 }
-
+/* Using the query for Responsivnes */
 @media (max-width: 768px) {
     .product {
         width: 48%; 
@@ -169,8 +171,8 @@ h1 {
     </style>
 </head>
 <body class="p-3 m-0 border-0 bd-example m-0 border-0">
-
-    <h1>L O &hearts; E C a r t</h1>
+    <pre> <h1>L O &hearts; E  C a r t</h1></pre>
+   
     
     <div class="container my-3">
         <?php 
@@ -210,6 +212,8 @@ h1 {
     <div class="fot">Buy things for you and your beloved! &hearts;</div>
 
     <script>
+
+        //Using AJAX and JS
     $(document).ready(function() {
         $('.add-to-cart-btn').on('click', function(e) {
             e.preventDefault();

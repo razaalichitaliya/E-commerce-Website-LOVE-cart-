@@ -1,21 +1,28 @@
 <?php
 session_start();
-if(isset($_GET["pid"]))
-{
-	$pid = $_GET["pid"];
-	
-	echo $query = "delete from products where productid = '$pid'";
+if (isset($_GET["pid"])) {
+    $pid = $_GET["pid"];
+    
+    // SQL queries to handle dependencies
+    $deleteFromAddToCart = "DELETE FROM addtocart WHERE productid = '$pid'";
+    $deleteProduct = "DELETE FROM products WHERE productid = '$pid'";
 
-	try
-	{
-		require_once("../connection.php");
-		$con->query($query);
-		$_SESSION["message"] = "Product is deleted Successfully";
-		header("location: index.php");
-	}
-	catch(Exception $e)
-	{
-		echo "Some error occured. Please try again";
-	}
+    try {
+        // Include database connection
+        require_once("../connection.php");
+
+        // Delete related entries from the `addtocart` table first
+        $con->query($deleteFromAddToCart);
+
+        // Delete the product from the `products` table
+        $con->query($deleteProduct);
+
+        // Set success message
+        $_SESSION["message"] = "Product deleted successfully!";
+        header("location: product.php");
+    } catch (Exception $e) {
+        // Display error message
+        echo "Some error occurred. Please try again. " . $e->getMessage();
+    }
 }
 ?>

@@ -7,7 +7,7 @@ $productname = "";
 $price = "";
 $imagepath = "";
 $pid = $_GET["pid"];
-
+//Used Database
 // Retrieve product details from the database
 $query = "SELECT * FROM products WHERE productid = ?";
 $stmt = $con->prepare($query);

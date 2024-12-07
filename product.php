@@ -1,4 +1,6 @@
 <?php
+
+//Using OOPS
 class Product {
     private $db;
     private $userId;
